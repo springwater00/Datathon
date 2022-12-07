@@ -20,62 +20,69 @@ x = df[df['diet'] == 'low fat'].loc[:, 'pulse'].mean()
 y = df[df['diet'] == 'no fat'].loc[:, 'pulse'].mean()
 print(x, y)
 
-plt.bar(['low fat', 'no fat'], [x, y])
-plt.show()
+#print bar diet plot
+def print_bar(df):
+    plt.bar(['low fat', 'no fat'], [x, y])
+    plt.show()
 
-x_rest = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse'].mean()
-x_run = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse'].mean()
-y_rest = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse'].mean()
-y_run = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse'].mean()
+#print pulse
+def print_pulse(df):
+    x_rest = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse'].mean()
+    x_run = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse'].mean()
+    y_rest = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse'].mean()
+    y_run = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse'].mean()
 
-plt.bar([0, 1, 2, 3], [x_rest, x_run, y_rest, y_run])
-plt.show()
+    plt.bar([0, 1, 2, 3], [x_rest, x_run, y_rest, y_run])
+    plt.show()
 
-plt.subplot(2,2,1)
-x = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'time']
-y = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
-plt.scatter(x, y)
-plt.xlim([-1, 3])
-plt.ylim([60, 170])
+#print scatter time and pulse plot
+def print_scatter(df):
+    plt.subplot(2,2,1)
+    x = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'time']
+    y = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
+    plt.scatter(x, y)
+    plt.xlim([-1, 3])
+    plt.ylim([60, 170])
 
-plt.subplot(2,2,2)
-x = x = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'time']
-y = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse']
-plt.scatter(x, y)
-plt.xlim([-1, 3])
-plt.ylim([60, 170])
+    plt.subplot(2,2,2)
+    x = x = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'time']
+    y = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse']
+    plt.scatter(x, y)
+    plt.xlim([-1, 3])
+    plt.ylim([60, 170])
 
-plt.subplot(2,2,3)
-x = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'time']
-y = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
-plt.scatter(x, y)
-plt.xlim([-1, 3])
-plt.ylim([60, 170])
+    plt.subplot(2,2,3)
+    x = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'time']
+    y = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
+    plt.scatter(x, y)
+    plt.xlim([-1, 3])
+    plt.ylim([60, 170])
 
-plt.subplot(2,2,4)
-x = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'time']
-y = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse']
-plt.scatter(x, y)
-plt.xlim([-1, 3])
-plt.ylim([60, 170])
+    plt.subplot(2,2,4)
+    x = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'time']
+    y = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse']
+    plt.scatter(x, y)
+    plt.xlim([-1, 3])
+    plt.ylim([60, 170])
 
-plt.show()
+    plt.show()
 
-#subsititude plot
-x = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'time']
-y = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
-plt.scatter(x, y, color='purple')
+#combine plots
+def print_plots(df):
+    x = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'time']
+    y = df[(df['diet'] == 'low fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
+    plt.scatter(x, y, color='purple')
 
-x = x = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'time']
-y = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse']
-plt.scatter(x, y, color='blue')
+    x = x = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'time']
+    y = df[(df['diet'] == 'low fat') & (df['kind'] == 'running')].loc[:, 'pulse']
+    plt.scatter(x, y, color='blue')
 
-x = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'time']
-y = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
-plt.scatter(x, y, color='pink')
+    x = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'time']
+    y = df[(df['diet'] == 'no fat') & (df['kind'] == 'rest')].loc[:, 'pulse']
+    plt.scatter(x, y, color='pink')
 
-x = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'time']
-y = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse']
-plt.scatter(x, y, color='red')
+    x = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'time']
+    y = df[(df['diet'] == 'no fat') & (df['kind'] == 'running')].loc[:, 'pulse']
+    plt.scatter(x, y, color='red')
 
-plt.show()
+    plt.show()
